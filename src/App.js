@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Route, Link, Switch} from "react-router-dom";
+import AboutPage from "./components/AboutPage.js"
+import HomePage from "./components/HomePage.js"
+import NotFoundPage from './components/NotFoundPage';
 
 class App extends Component {
   render() {
     return (
-      <Router>
         <div>
           <ul>
             <li>
@@ -16,28 +18,15 @@ class App extends Component {
             </li>
           </ul>
           <hr />
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/about" component={AboutPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
         </div>
-      </Router>
     );
   }
 }
 
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
 
 export default App;
